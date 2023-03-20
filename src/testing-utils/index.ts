@@ -1,0 +1,17 @@
+export const ENTER = '{enter}';
+export const SPACE = '{space}';
+export const ESC = '{esc}';
+export const BACKSPACE = '{backspace}';
+export const DEL = '{del}';
+export const SELECT_ALL = '{selectall}';
+export const ARROW_LEFT = '{arrowleft}';
+export const ARROW_RIGHT = '{arrowright}';
+export const ARROW_UP = '{arrowup}';
+export const ARROW_DOWN = '{arrowdown}';
+export const HOME = '{home}';
+export const END = '{end}';
+export const SHIFT = '{shift}';
+export const CTRL = '{ctrl}';
+export const ALT = '{alt}';
+export const META = '{meta}';
+export const CAPS_LOCK = '{capslock}';
