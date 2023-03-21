@@ -1,39 +1,22 @@
-import { useState, KeyboardEvent, ChangeEvent } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
 
-type TodoItem<T> = {
+import { TodoInput } from './TodoInput';
+import { TodoListing } from './TodoListing';
+
+export type TodoItem<T> = {
   id: string;
   content: T;
 };
 
 export const Todo = () => {
-  const [userInput, setUserInput] = useState<string>('');
   const [todos, setTodos] = useState<TodoItem<string>[]>([]);
 
-  const handleKeyDown = (ev: KeyboardEvent<HTMLElement>) => {
-    if (ev.key === 'Enter') {
-      setTodos([...todos, { id: uuid(), content: userInput.trim() }]);
-      setUserInput('');
-    }
-  };
-
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) =>
-    setUserInput(ev.target.value);
+  const onItemAdded = (item: TodoItem<string>) => setTodos([...todos, item]);
 
   return (
-    <div>
-      <input
-        data-testid={'todo-input'}
-        type={'text'}
-        value={userInput}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      ></input>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <TodoInput onItemAdded={onItemAdded} />
+      <TodoListing items={todos} />
+    </>
   );
 };
