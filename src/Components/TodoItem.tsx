@@ -27,7 +27,7 @@ export const TodoItem = ({
         data-testid={`todo-item-delete-btn-${id}`}
         onClick={onDeleteItemClicked}
       >
-        🗑️
+        delete
       </button>
     </li>
   );

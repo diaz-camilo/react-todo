@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TodoItemProps } from '../components/TodoItem';
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<TodoItemProps['item'][]>([]);
+
+  const completed = useMemo(
+    () => todos.filter((todo) => todo.isCompleted),
+    [todos]
+  );
+  const pending = useMemo(
+    () => todos.filter((todo) => !todo.isCompleted),
+    [todos]
+  );
 
   const addTodo = (todo: TodoItemProps['item']) => setTodos([...todos, todo]);
 
@@ -19,5 +28,5 @@ export const useTodos = () => {
     setTodos(updatedTodos);
   };
 
-  return { todos, addTodo, toggleTodo, removeTodo };
+  return { todos, completed, pending, addTodo, toggleTodo, removeTodo };
 };
