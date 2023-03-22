@@ -16,7 +16,13 @@ describe('todo item', () => {
   };
 
   it('render the incomplete item', () => {
-    render(<TodoItem item={incompleteItem} onItemClicked={() => null} />);
+    render(
+      <TodoItem
+        item={incompleteItem}
+        onItemClicked={() => null}
+        onDeleteButtonClicked={() => null}
+      />
+    );
     const listItem = screen.getByText(/^buy icecream$/);
 
     expect(listItem).not.toHaveAttribute('data-completed');
@@ -24,7 +30,13 @@ describe('todo item', () => {
   });
 
   it('render the completed item', () => {
-    render(<TodoItem item={completedItem} onItemClicked={() => null} />);
+    render(
+      <TodoItem
+        item={completedItem}
+        onItemClicked={() => null}
+        onDeleteButtonClicked={() => null}
+      />
+    );
     const listItem = screen.getByText(/^buy icecream$/);
 
     expect(listItem).toHaveAttribute('data-completed');
@@ -33,7 +45,13 @@ describe('todo item', () => {
 
   it('call onItemClicked callback when clicked', () => {
     const onItemClicked = jest.fn();
-    render(<TodoItem item={incompleteItem} onItemClicked={onItemClicked} />);
+    render(
+      <TodoItem
+        item={incompleteItem}
+        onItemClicked={onItemClicked}
+        onDeleteButtonClicked={() => null}
+      />
+    );
     const listItem = screen.getByText(/^buy icecream$/);
 
     act(() => {
@@ -41,5 +59,23 @@ describe('todo item', () => {
     });
 
     expect(onItemClicked).toHaveBeenCalledTimes(1);
+  });
+
+  it('call onItemClicked callback when clicked', () => {
+    const onDeleteItemClicked = jest.fn();
+    render(
+      <TodoItem
+        item={incompleteItem}
+        onItemClicked={() => null}
+        onDeleteButtonClicked={onDeleteItemClicked}
+      />
+    );
+    const deleteButton = screen.getByRole('button');
+
+    act(() => {
+      userEvent.click(deleteButton);
+    });
+
+    expect(onDeleteItemClicked).toHaveBeenCalledTimes(1);
   });
 });

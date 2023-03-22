@@ -16,9 +16,15 @@ describe('Todo listing', () => {
       createItem('eat icecream'),
       createItem('buy more icecream'),
     ];
-    render(<TodoListing items={items} onItemClicked={() => null} />);
+    render(
+      <TodoListing
+        items={items}
+        onItemClicked={() => null}
+        onDeleteButtonClicked={() => null}
+      />
+    );
 
-    const listItems = screen.getByRole('list').querySelectorAll('li');
+    const listItems = screen.getByRole('list').querySelectorAll('span');
 
     expect(listItems[0].textContent).toEqual('buy icecream');
     expect(listItems[1].textContent).toEqual('find spoon');
@@ -27,7 +33,13 @@ describe('Todo listing', () => {
   });
 
   it("doesn't render a list element <ol/> or <ul/> if no items", () => {
-    render(<TodoListing items={[]} onItemClicked={() => null} />);
+    render(
+      <TodoListing
+        items={[]}
+        onItemClicked={() => null}
+        onDeleteButtonClicked={() => null}
+      />
+    );
 
     const list = screen.queryByRole('list');
 

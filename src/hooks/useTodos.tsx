@@ -15,12 +15,8 @@ export const useTodos = () => {
   };
 
   const removeTodo = (id: string) => {
-    const todoIndex = todos.findIndex((todo) => todo.id);
-    if (typeof todoIndex === 'number') {
-      const updatedTodos = [...todos];
-      updatedTodos.splice(todoIndex, 1);
-      setTodos(updatedTodos);
-    }
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
   };
 
   return { todos, addTodo, toggleTodo, removeTodo };
