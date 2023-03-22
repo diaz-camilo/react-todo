@@ -15,20 +15,15 @@ export const TodoItem = ({
 }: TodoItemProps) => {
   return (
     <li>
-      <span
-        key={id}
-        className="todo-item"
-        data-completed={isCompleted ? true : undefined}
-        onClick={onItemClicked}
-      >
-        {content}
-      </span>
-      <button
-        data-testid={`todo-item-delete-btn-${id}`}
-        onClick={onDeleteItemClicked}
-      >
-        delete
-      </button>
+      <div className="todo-item">
+        <span
+          data-completed={isCompleted ? true : undefined}
+          onClick={onItemClicked}
+        >
+          {content}
+        </span>
+        <button onClick={onDeleteItemClicked}>delete</button>
+      </div>
     </li>
   );
 };

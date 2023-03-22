@@ -4,9 +4,16 @@ body {
 
 ol{
   list-style-type: lower-roman;
+  max-width: 500px;
 }
 
-.todo-item[data-completed] {
+.todo-item{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+
+.todo-item span[data-completed] {
   text-decoration: line-through;
   color: #666;
 }
